@@ -4,12 +4,31 @@
   "scripts": {
     "dev": "tsx watch server/index.ts"
   },
+  "imports": {
+    "@/shared/*": "./shared/*",
+    "@/*": [
+      "./server/*",
+      "./server/*.ts",
+      "./server/*.tsx",
+      "./server/*.js",
+      "./server/*.jsx",
+      "./server/*/index.ts",
+      "./server/*/index.tsx",
+      "./server/*/index.js",
+      "./server/*/index.jsx"
+    ]
+  },
   "dependencies": {
     "@hono/node-server": "^1.13.2",
-    "hono": "^4.6.6"
+    "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.35.3",
+    "hono": "^4.6.6",
+    "pg": "^8.13.0"
   },
   "devDependencies": {
     "@types/node": "^20.11.17",
-    "tsx": "^4.7.1"
+    "@types/pg": "^8.11.10",
+    "drizzle-kit": "^0.26.2",
+    "tsx": "^4.19.1"
   }
 }
