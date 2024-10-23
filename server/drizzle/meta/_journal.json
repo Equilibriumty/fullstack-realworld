@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1729692798330,
+      "tag": "0000_open_mulholland_black",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1729692915092,
+      "tag": "0001_empty_banshee",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1729695137873,
+      "tag": "0002_tan_silver_sable",
+      "breakpoints": true
+    }
+  ]
+}
