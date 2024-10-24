@@ -12,7 +12,8 @@ export const users = pgTable("users", {
   email: text("email").notNull(),
   username: text("username").notNull(),
   password: text("password").notNull().unique(),
-  bio: text("bio").notNull(),
+  image: text("image"),
+  bio: text("bio"),
 });
 
 export const userRelations = relations(users, ({ many }) => ({
