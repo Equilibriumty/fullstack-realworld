@@ -40,8 +40,7 @@ export class ProfilesService {
         .values([{ followerId, followedId: userToFollow[0].id }])
         .returning();
     } catch (e) {
-      console.log(e);
-      return new HTTPException(409, { message: "User already followed" });
+      return toProfile({ ...userToFollow[0], following: true });
     }
 
     return toProfile({ ...userToFollow[0], following: true });
@@ -68,9 +67,7 @@ export class ProfilesService {
         )
         .execute();
     } catch (e) {
-      return new HTTPException(409, { message: "User already unfollowed" });
-
-      console.log(e);
+      return toProfile({ ...userToUnfollow[0], following: false });
     }
     return toProfile({ ...userToUnfollow[0], following: false });
   }
