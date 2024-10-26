@@ -23,5 +23,5 @@ export const profilesController = new Hono()
       c.get("user").id,
       c.req.param("username")
     );
-    return c.json(profile);
+    return c.json(profile, 204);
   });
