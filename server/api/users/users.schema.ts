@@ -1,19 +1,19 @@
-import { createInsertSchema, createSelectSchema } from "drizzle-zod";
-import { z } from "zod";
 import { users } from "@/db/schema.js";
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
+import type { z } from "zod";
 
 export const createUserSchema = createInsertSchema(users);
 export const updateUserSchema = createUserSchema.omit({ id: true }).partial();
 
 export const registerUserSchema = createUserSchema.pick({
-  username: true,
-  password: true,
-  email: true,
+	username: true,
+	password: true,
+	email: true,
 });
 
 export const loginUserSchema = createUserSchema.pick({
-  email: true,
-  password: true,
+	email: true,
+	password: true,
 });
 
 const getUserSchema = createSelectSchema(users);

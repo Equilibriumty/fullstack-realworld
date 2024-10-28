@@ -1,41 +1,41 @@
 {
-  "version": "7",
-  "dialect": "postgresql",
-  "entries": [
-    {
-      "idx": 0,
-      "version": "7",
-      "when": 1729692798330,
-      "tag": "0000_open_mulholland_black",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1729692915092,
-      "tag": "0001_empty_banshee",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1729695137873,
-      "tag": "0002_tan_silver_sable",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1729782081847,
-      "tag": "0003_loud_charles_xavier",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "7",
-      "when": 1729782626419,
-      "tag": "0004_sparkling_hellfire_club",
-      "breakpoints": true
-    }
-  ]
+	"version": "7",
+	"dialect": "postgresql",
+	"entries": [
+		{
+			"idx": 0,
+			"version": "7",
+			"when": 1729692798330,
+			"tag": "0000_open_mulholland_black",
+			"breakpoints": true
+		},
+		{
+			"idx": 1,
+			"version": "7",
+			"when": 1729692915092,
+			"tag": "0001_empty_banshee",
+			"breakpoints": true
+		},
+		{
+			"idx": 2,
+			"version": "7",
+			"when": 1729695137873,
+			"tag": "0002_tan_silver_sable",
+			"breakpoints": true
+		},
+		{
+			"idx": 3,
+			"version": "7",
+			"when": 1729782081847,
+			"tag": "0003_loud_charles_xavier",
+			"breakpoints": true
+		},
+		{
+			"idx": 4,
+			"version": "7",
+			"when": 1729782626419,
+			"tag": "0004_sparkling_hellfire_club",
+			"breakpoints": true
+		}
+	]
 }

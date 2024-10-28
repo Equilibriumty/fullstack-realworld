@@ -3,36 +3,37 @@ import { UsersService } from "@/api/users/users.service.js";
 import { createMiddleware } from "hono/factory";
 import { verify } from "hono/jwt";
 import "dotenv/config";
+import { env } from "@/config.js";
 import { HTTPException } from "hono/http-exception";
 
-const JWT_SECRET = process.env["JWT_SECRET"]!;
+const JWT_SECRET = env.JWT_SECRET;
 
 type Env = {
-  Variables: {
-    user: User;
-  };
+	Variables: {
+		user: User;
+	};
 };
 
 export const jwtMiddleware = createMiddleware<Env>(async (c, next) => {
-  const authHeader = c.req.header("Authorization");
+	const authHeader = c.req.header("Authorization");
 
-  if (!authHeader || !authHeader.startsWith("Bearer ")) {
-    throw new HTTPException(401, { message: "Unauthorized" });
-  }
-  const token = authHeader.split(" ")[1];
+	if (!authHeader || !authHeader.startsWith("Bearer ")) {
+		throw new HTTPException(401, { message: "Unauthorized" });
+	}
+	const token = authHeader.split(" ")[1];
 
-  try {
-    const decodedToken = await verify(token, JWT_SECRET);
+	try {
+		const decodedToken = await verify(token, JWT_SECRET);
 
-    const user = await UsersService.getUserById(Number(decodedToken["userId"]));
+		const user = await UsersService.getUserById(Number(decodedToken["userId"]));
 
-    if (!user) {
-      throw new HTTPException(401, { message: "Unauthorized" });
-    }
+		if (!user) {
+			throw new HTTPException(401, { message: "Unauthorized" });
+		}
 
-    c.set("user", user);
-    await next();
-  } catch (err) {
-    throw new HTTPException(401, { message: "Invalid or expired token" });
-  }
+		c.set("user", user);
+		await next();
+	} catch (err) {
+		throw new HTTPException(401, { message: "Invalid or expired token" });
+	}
 });
