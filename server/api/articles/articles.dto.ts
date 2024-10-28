@@ -4,10 +4,12 @@ import { getArticleSchema, type Article } from "./articles.schema.js";
 export const toArticle = (article: any): Article => {
   const following = article.author.followedBy.length;
 
-  const tagList = article.tagsArticles.map(({ tag }) => ({
-    id: tag.id,
-    name: tag.name,
-  }));
+  const tagList =
+    article.tagList ??
+    article.tagsArticles.map(({ tag }) => ({
+      id: tag.id,
+      name: tag.name,
+    }));
 
   const favorited = article.favorites.length > 0;
 

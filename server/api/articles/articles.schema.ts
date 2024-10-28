@@ -1,7 +1,14 @@
-import { articles } from "@/db/schema.js";
+import {
+  articles,
+  favorites,
+  tags,
+  userFollowers,
+  users,
+} from "@/db/schema.js";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 import { getProfileSchema } from "../profiles/profiles.schema.js";
+import { sql } from "drizzle-orm";
 
 export const createArticleSchema = createInsertSchema(articles);
 export const getArticleBaseSchema = createSelectSchema(articles).omit({
@@ -52,6 +59,34 @@ export const updateArticlePayloadSchema = z
       : data.slug,
   }));
 
+export const articleQueryParams = z.object({
+  author: z.string().optional(),
+  favorited: z.string().optional(),
+  tag: z.string().optional(),
+  limit: z.number().optional(),
+  offset: z.number().optional(),
+});
+
+export type ArticleQueryParams = z.infer<typeof articleQueryParams>;
+
 export type CreateArticlePayload = z.infer<typeof createArticlePayloadSchema>;
 export type UpdateArticlePayload = z.input<typeof updateArticlePayloadSchema>;
 export type Article = z.infer<typeof getArticleSchema>;
+
+export const articleFields = {
+  id: articles.id,
+  slug: articles.slug,
+  title: articles.title,
+  body: articles.body,
+  description: articles.description,
+  tagString: sql<string>`JSON_ARRAYAGG(${tags.name})`.as("tags"),
+  createdAt: articles.createdAt,
+  updatedAt: articles.updatedAt,
+  username: users.username,
+  bio: users.bio,
+  image: users.image,
+  userFollowers: sql<string>`JSON_ARRAYAGG(${userFollowers.followerId})`.as(
+    "userFollowers"
+  ),
+  favorites: sql<string>`JSON_ARRAYAGG(${favorites.userId})`.as("favorites"),
+};
