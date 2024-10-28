@@ -29,7 +29,6 @@ export const userController = new Hono()
   })
   .get("/", jwtMiddleware, (c) => {
     const user = c.get("user");
-    console.log(user);
     return c.json(user);
   })
   .put("/", jwtMiddleware, zValidator("json", updateUserSchema), async (c) => {

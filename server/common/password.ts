@@ -16,7 +16,6 @@ export class Password {
   ): Promise<boolean> {
     const [hashedPassword, salt] = storedPassword.split(".");
     const hashedPasswordBuf = Buffer.from(hashedPassword, "hex");
-    console.log(storedPassword, suppliedPassword);
     const suppliedPasswordBuf = (await scryptAsync(
       suppliedPassword,
       salt,
